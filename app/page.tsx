@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <main>
       <div className="h-screen overflow-y-scroll snap-y snap-mandatory scrollbar-thin scrollbar-thumb-primary scrollbar-track-primary">
-        <section id="hero" className="h-screen snap-start">
+        <section id="" className="h-screen snap-start">
           <Hero heroData={heroData} />
         </section>
 
