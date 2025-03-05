@@ -12,6 +12,7 @@ import {
   FaChevronUp,
 } from "react-icons/fa";
 import Link from "next/link";
+import { SubmitHandler } from "react-hook-form";
 
 const socials = [
   { href: "https://www.linkedin.com/in/mohantejad/", icon: <FaLinkedin /> },
@@ -20,15 +21,22 @@ const socials = [
   { href: "https://www.youtube.com/c/mohanteja", icon: <FaYoutube /> },
 ];
 
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 const Contact = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm<FormData>();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     const toastId = toast.loading("Sending email...");
 
     try {
@@ -44,6 +52,7 @@ const Contact = () => {
       reset();
     } catch (error) {
       toast.error("Failed to send email. Try again later.", { id: toastId });
+      console.log(error)
     }
   };
 

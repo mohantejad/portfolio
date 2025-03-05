@@ -5,13 +5,11 @@ interface ProjectsType {
   name: string;
   liveDemo: string;
 }
-[];
 
 interface ExperienceType {
   company: string;
   role: string;
 }
-[];
 
 type SkillModalProps = {
   project?: ProjectsType[];
@@ -28,7 +26,7 @@ const SkillModal = ({
   percentage,
   onClose,
 }: SkillModalProps) => {
-  console.log(project)
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

@@ -11,15 +11,23 @@ interface ExperinceProps {
 
 
 const Experience: React.FC<ExperinceProps> = ({ experienceData }) => {
+  
   const groupedExperiences = experienceData.reduce(
     (acc, exp) => {
-      const period = `${exp.fromDate.slice(0, 7)} - ${exp.toDate ? exp.toDate.slice(0, 7) : "Present"}`;
+      const formatDate = (dateString: string | null) =>
+        dateString
+          ? new Date(dateString).toLocaleString("en-US", { month: "short", year: "numeric" })
+          : "Present";
+  
+      const period = `${formatDate(exp.fromDate)} - ${formatDate(exp.toDate)}`;
+      
       if (!acc[period]) acc[period] = [];
       acc[period].push(exp);
+      
       return acc;
     },
     {} as Record<string, ExperienceType[]>
-  );
+  );  
 
   return (
     <div className="relative h-screen flex flex-col items-center justify-center">
@@ -39,7 +47,7 @@ const Experience: React.FC<ExperinceProps> = ({ experienceData }) => {
             <Tab
               key={period}
               className={({ selected }) =>
-                `px-4 py-2 text-md font-bold rounded-lg focus:outline-none transition-all border border-primary uppercase ${
+                `px-4 py-2 text-md font-bold rounded-lg focus:outline-none transition-all border border-primary ${
                   selected
                     ? "bg-primary text-navbar"
                     : "text-primary hover:scale-105 hover:opacity-9 hover:bg-primary/80 hover:text-navbar"
@@ -52,7 +60,7 @@ const Experience: React.FC<ExperinceProps> = ({ experienceData }) => {
         </TabList>
 
         <TabPanels className="mt-8 w-full px-6 md:px-0 flex items-center justify-center">
-          {Object.keys(groupedExperiences).map((period, idx) => (
+          {Object.keys(groupedExperiences).map((period) => (
             <TabPanel
               key={`${period}`}
               className="w-full items-center justify-center flex"

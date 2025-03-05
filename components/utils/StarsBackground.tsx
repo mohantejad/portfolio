@@ -2,9 +2,8 @@
 
 import React, { useEffect, useRef } from 'react'
 
-type Props = {}
 
-const StarsBackground = (props: Props) => {
+const StarsBackground = () => {
     const starsRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {

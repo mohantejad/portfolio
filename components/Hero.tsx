@@ -13,7 +13,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ heroData }) => {
-  const stats = heroData?.stats || [];
+  const stats = useMemo(() => heroData?.stats || [], [heroData.stats]);
 
   const [animatedStats, setAnimatedStats] = useState<number[]>([]);
   const animatedTexts = useMemo(
@@ -96,7 +96,7 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
+                  <Image
                     src={item.icon}
                     alt={item.platform}
                     width={32}
