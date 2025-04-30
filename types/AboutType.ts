@@ -3,17 +3,20 @@ type EducationType = {
   college: string;
   major: string;
   year: string;
+  collegeLink?: string
 };
 
 type ExperienceType = {
   role: string;
   company: string;
   duration: string;
+  companyLink?: string
 };
 
 type ProjectType = {
   name: string;
   icon: string;
+  link?: string;
 };
 
 type SkillType = {

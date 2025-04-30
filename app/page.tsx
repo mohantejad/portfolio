@@ -26,8 +26,8 @@ export default async function Home() {
 
         <section id="about" className="h-screen snap-start">
           <About 
-            aboutData={aboutData} 
-            projects={projectData.map(({ name, icon, liveDemo }) => ({ name, icon, liveDemo }))} 
+            aboutData={aboutData}
+            projects={projectData.map(({ name, icon, liveDemo, slug }) => ({ name, icon, liveDemo, slug }))} 
           />
         </section>
 

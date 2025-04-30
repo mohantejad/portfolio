@@ -17,8 +17,8 @@ import { SubmitHandler } from "react-hook-form";
 const socials = [
   { href: "https://www.linkedin.com/in/mohantejad/", icon: <FaLinkedin /> },
   { href: "https://github.com/mohantejad", icon: <FaGithub /> },
-  { href: "https://www.instagram.com/mohantejad15/", icon: <FaInstagram /> },
-  { href: "https://www.youtube.com/c/mohanteja", icon: <FaYoutube /> },
+  { href: "https://www.instagram.com/mohantejad/", icon: <FaInstagram /> },
+  { href: "https://www.youtube.com/@MohanTeja-fs1jm", icon: <FaYoutube /> },
 ];
 
 interface FormData {

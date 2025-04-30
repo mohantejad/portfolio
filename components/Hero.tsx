@@ -14,7 +14,6 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ heroData }) => {
   const stats = useMemo(() => heroData?.stats || [], [heroData.stats]);
-
   const [animatedStats, setAnimatedStats] = useState<number[]>([]);
   const animatedTexts = useMemo(
     () => heroData.typographs.flatMap((text) => [text, 2000]),
@@ -23,15 +22,11 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
   
   useEffect(() => {
     if (stats.length === 0) return;
-
     setAnimatedStats(stats.map(() => 0));
-
     const intervals: NodeJS.Timeout[] = [];
-
     stats.forEach((stat, index) => {
       let count = 0;
       const increment = Math.ceil(stat.value / 100);
-
       const interval = setInterval(() => {
         count += increment;
         if (count >= stat.value) {
@@ -44,7 +39,6 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
           return newStats;
         });
       }, 20);
-
       intervals.push(interval);
     });
     return () => {
@@ -131,7 +125,7 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="absolute bottom-44 sm:bottom-36 md:bottom-40 left-1/2 transform -translate-x-1/2 flex gap-8 text-center"
+        className="absolute bottom-44 sm:bottom-44 md:bottom-40 left-1/2 transform -translate-x-1/2 flex gap-8 text-center"
       >
         {heroData.stats.map((stat, index) => (
           <div key={index}>
@@ -143,14 +137,14 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
         ))}
       </motion.div>
 
-      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex gap-8 text-center text-md">
+      <div className="absolute bottom-20 md:bottom-24 left-1/2 transform -translate-x-1/2 flex gap-8 text-center text-md">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="text-[16px] md:text-lg font-medium"
         >
-          <span className="text-text">Need Help with Building Fututre? </span>
+          <span className="text-text">If there is job opening with requirement of my skillset? </span>
           <a
             href="#contact"
             className="relative group font-bold uppercase whitespace-nowrap text-primary mt-4 border-b-2 border-primary transition-all duration-300 hover:text-hover hover:border-hover group"
@@ -167,7 +161,7 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
         transition={{ duration: 1.5, repeat: Infinity }}
         className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-primary text-xl cursor-pointer p-1 hover:border hover:border-primary rounded-full bg-opacity-0 transition-border duration-300 hover:bg-primary hover:text-black"
         onClick={() => {
-          const nextSection = document.getElementById("about"); // Change "about" to your next section's ID
+          const nextSection = document.getElementById("about");
           if (nextSection) {
             nextSection.scrollIntoView({ behavior: "smooth" });
           }

@@ -14,13 +14,15 @@ import {
   FaFlask,
   FaChevronDown,
 } from "react-icons/fa";
+import InfoCard from "./utils/InfoCard";
+import Link from "next/link";
 
 interface ProjectSummary {
   name: string;
   icon: string;
   liveDemo: string;
+  slug: string;
 }
-
 
 interface AboutProps {
   aboutData: AboutType;
@@ -34,10 +36,7 @@ const iconMap: Record<string, ReactElement> = {
   FaFlask: <FaFlask />,
 };
 
-
-
 const About: React.FC<AboutProps> = ({ aboutData, projects }) => {
-
   return (
     <div className="relative h-screen text-text snap-start snap-mandatory overflow-y-scroll flex flex-col items-center justify-center px-6">
       <motion.h1
@@ -47,86 +46,78 @@ const About: React.FC<AboutProps> = ({ aboutData, projects }) => {
         transition={{ duration: 1 }}
         className="text-xl md:text-2xl uppercase font-bold text-primary text-center mt-8"
       >
-        My Journey Towards Building Intelligent Solutions
+        My Journey Towards Building Intellectual Solutions
       </motion.h1>
 
       <div className="mt-8 md:mt-10 grid gap-10 md:grid-cols-3">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="p-6 border border-primary rounded-lg text-center"
-        >
-          <div className="flex items-center space-x-4">
-            <FaGraduationCap className="text-2xl text-primary" />
-            <h3 className="text-xl font-bold uppercase">Education</h3>
-          </div>
-          <div className="mt-2 text-left">
-            {aboutData.education.map((edu) => (
-              <div key={edu.degree} className="mb-2">
-                <h4 className="text-md font-semibold text-primary">{edu.degree}</h4>
-                <p className="text-sm text-text">{edu.major} - {edu.college} ({edu.year})</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="p-6 border border-primary rounded-lg text-center"
+        <InfoCard
+          icon={<FaGraduationCap className="text-2xl text-primary" />}
+          title="Education"
         >
-          <div className="flex items-center space-x-4">
-            <FaProjectDiagram className="text-2xl text-primary" />
-            <h3 className="text-xl font-bold uppercase">Projects</h3>
-          </div>
-          <div className="mt-2 text-left flex flex-col space-y-1">
+          {aboutData.education.map((edu) => (
+            <div key={edu.degree} className="mb-2">
+              <h4 className="text-md font-semibold text-primary">
+                {edu.degree}
+              </h4>
+              <p className="text-sm text-text">
+                <Link href={`${edu.collegeLink}`} className="hover:underline">{edu.major} - {edu.college} ({edu.year})</Link>
+              </p>
+            </div>
+          ))}
+        </InfoCard>
+
+        <InfoCard
+          icon={<FaProjectDiagram className="text-2xl text-primary" />}
+          title="Projects"
+          delay={0.3}
+        >
+          <div className="flex flex-col space-y-2">
             {projects.map((proj) => (
-              <div key={proj.name} className="flex items-center gap-3 text-sm font-semibold">
+              <Link
+                href={`projects/${proj.slug}`}
+                key={proj.name}
+                className="flex items-center gap-3 text-sm font-semibold hover:underline"
+              >
                 {iconMap[proj.icon] || <FaProjectDiagram />} {proj.name}
-              </div>
+              </Link>
             ))}
           </div>
-        </motion.div>
+        </InfoCard>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="p-6 border border-primary rounded-lg text-center hidden md:block"
+        <InfoCard
+          icon={<FaBriefcase className="text-2xl text-primary" />}
+          title="Experience"
+          delay={0.6}
+          hiddenOnMobile
         >
-          <div className="flex items-center space-x-4">
-            <FaBriefcase className="text-2xl text-primary" />
-            <h3 className="text-xl font-bold uppercase">Experience</h3>
-          </div>
-          <div className="mt-2 text-left">
-            {aboutData.experience.map((exp) => (
-              <div key={exp.role} className="mb-2">
-                <h4 className="text-md font-semibold text-primary">{exp.role}</h4>
-                <p className="text-sm text-text">{exp.company} ({exp.duration})</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+          {aboutData.experience.map((exp) => (
+            <div key={exp.role} className="mb-2">
+              <h4 className="text-md font-semibold text-primary">{exp.role}</h4>
+              <p className="text-sm text-text">
+                <Link href={`${exp.companyLink}`} className="hover:underline">{exp.company} ({exp.duration})</Link>
+              </p>
+            </div>
+          ))}
+        </InfoCard>
       </div>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.9 }}
-        className="hidden md:flex mt-12 flex-wrap justify-center gap-4"
+        className="hidden md:flex mt-14 flex-wrap justify-center gap-4"
       >
         {aboutData.skills
           .filter((skill) => skill.top)
           .map((skill, index) => (
-            <a
+            <Link
               key={index}
               href={skill.link}
-              className="px-4 py-2 text-sm font-semibold border-2 rounded-full transition-all duration-300 border-text text-primary hover:bg-primary hover:text-black hover:shadow-lg"
+              className="px-4 py-2 text-sm font-semibold border-2 rounded-full transition-all duration-300 border-text text-primary hover:bg-primary hover:text-black hover:shadow-lg hover:underline"
             >
               {skill.name}
-            </a>
+            </Link>
           ))}
       </motion.div>
 
@@ -145,7 +136,7 @@ const About: React.FC<AboutProps> = ({ aboutData, projects }) => {
           href="#contact"
           className="relative inline-flex items-center gap-2 text-lg font-bold text-primary border-b-2 border-primary transition-all duration-300 hover:text-hover hover:border-hover group whitespace-nowrap"
         >
-          Get in Touch <FaEnvelope />
+          Let&apos;s Connect{" "} <FaEnvelope />
           <span className="absolute top-6 left-0 bottom-0 w-0 h-[2px] bg-hover transition-all duration-500 ease-in-out group-hover:w-full" />
         </a>
       </motion.div>

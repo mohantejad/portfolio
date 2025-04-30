@@ -36,13 +36,6 @@ const navItems = [
     delay: 0.4,
     changable: true,
   },
-  // {
-  //   href: '/blog',
-  //   text: 'Blog',
-  //   icon: <Code size={20} />,
-  //   delay: 0.3,
-  //   changable: true,
-  // },
 ];
 
 const dropdownItems = [

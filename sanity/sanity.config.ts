@@ -13,3 +13,5 @@ export const config = defineConfig({
     plugins: [structureTool()],
     schema: { types: schemas }
 })
+
+console.log('API Version:', process.env.NEXT_PUBLIC_SANITY_API_VERSION);
