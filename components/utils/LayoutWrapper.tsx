@@ -2,17 +2,15 @@
 
 import { usePathname } from "next/navigation";
 import Header from "@/components/Header";
-import StarsBackground from "@/components/utils/StarsBackground";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isAdminPage = pathname.startsWith("/admin"); // Check if in the admin panel
+  const isAdminPage = pathname.startsWith("/admin") || pathname.startsWith("/structure");
 
   return (
-    <>
+    <div className="stars-container flex items-center justify-center min-h-screen">
       {!isAdminPage && <Header />}
-      {!isAdminPage && <StarsBackground />}
       {children}
-    </>
+    </div>
   );
 }

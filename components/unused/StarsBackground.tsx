@@ -4,10 +4,10 @@ import React, { useEffect, useRef } from 'react'
 
 
 const StarsBackground = () => {
-    const starsRef = useRef<HTMLDivElement | null>(null);
+    // const starsRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        if (!starsRef.current) return;
+        // if (!starsRef.current) return;
     
         const numStars = Math.floor(Math.random() * 21) + 40;
         for (let i = 0; i < numStars; i++) {
@@ -17,11 +17,11 @@ const StarsBackground = () => {
           star.style.animationDuration = `${Math.random() * 2 + 2}s`;
           star.style.animationDelay = `${Math.random() * 2}s`;
     
-          starsRef.current.appendChild(star);
+          // starsRef.current.appendChild(star);
         }
       }, []);
   return (
-    <div ref={starsRef} className="stars-container fixed top-0 left-0 w-full h-full overflow-hidden"></div>
+    <div className="stars-container"></div>
   )
 }
 

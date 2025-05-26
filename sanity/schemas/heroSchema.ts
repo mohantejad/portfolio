@@ -21,28 +21,7 @@ const heroSchema = defineType({
       type: 'array',
       of: [{ type: 'string' }],
     }),
-    defineField({
-      name: 'stats',
-      title: 'Statistics',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'label',
-              title: 'Label',
-              type: 'string',
-            }),
-            defineField({
-              name: 'value',
-              title: 'Value',
-              type: 'number',
-            }),
-          ],
-        },
-      ],
-    }),
+    
     defineField({
       name: 'socials',
       title: 'Social Media Links',

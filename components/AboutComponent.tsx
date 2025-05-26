@@ -12,7 +12,6 @@ import {
   FaShoppingCart,
   FaFileAlt,
   FaFlask,
-  FaChevronDown,
 } from "react-icons/fa";
 import InfoCard from "./utils/InfoCard";
 import Link from "next/link";
@@ -36,9 +35,10 @@ const iconMap: Record<string, ReactElement> = {
   FaFlask: <FaFlask />,
 };
 
-const About: React.FC<AboutProps> = ({ aboutData, projects }) => {
+const AboutComponent: React.FC<AboutProps> = ({ aboutData, projects }) => {
+
   return (
-    <div className="relative h-screen text-text snap-start snap-mandatory overflow-y-scroll flex flex-col items-center justify-center px-6">
+    <div className="text-text flex flex-col items-center justify-center px-6">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ const About: React.FC<AboutProps> = ({ aboutData, projects }) => {
           <div className="flex flex-col space-y-2">
             {projects.map((proj) => (
               <Link
-                href={`projects/${proj.slug}`}
+                href={`${proj.liveDemo}`}
                 key={proj.name}
                 className="flex items-center gap-3 text-sm font-semibold hover:underline"
               >
@@ -140,23 +140,8 @@ const About: React.FC<AboutProps> = ({ aboutData, projects }) => {
           <span className="absolute top-6 left-0 bottom-0 w-0 h-[2px] bg-hover transition-all duration-500 ease-in-out group-hover:w-full" />
         </a>
       </motion.div>
-
-      <motion.button
-        initial={{ y: 0 }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-        className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-primary text-xl cursor-pointer p-1 hover:border hover:border-primary rounded-full bg-opacity-0 transition-border duration-300 hover:bg-primary hover:text-black"
-        onClick={() => {
-          const nextSection = document.getElementById("projects");
-          if (nextSection) {
-            nextSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
-      >
-        <FaChevronDown />
-      </motion.button>
     </div>
   );
 };
 
-export default About;
+export default AboutComponent;

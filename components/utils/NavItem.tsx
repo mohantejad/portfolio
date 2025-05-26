@@ -8,7 +8,7 @@ const NavItem = ({
   delay,
   hide,
   variant = "header",
-  activeSection,
+  pathname,
 }: {
   href: string;
   text: string;
@@ -16,9 +16,9 @@ const NavItem = ({
   delay?: number;
   hide?: boolean;
   variant?: "header" | "dropdown";
-  activeSection?: string;
+  pathname?: string;
 }) => {
-  const isActive = activeSection?.toLowerCase() === href.toLowerCase();
+  const isPathName = pathname?.toLowerCase() === href.toLowerCase();
 
   return (
     <motion.div
@@ -27,8 +27,8 @@ const NavItem = ({
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
       style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
       className={`
-        ${hide && variant === 'header' ? 'hidden lg:block': ''}
-         ${hide && variant === 'dropdown' ? 'hidden lg:block': ''}
+        ${hide && variant === "header" ? "hidden lg:block" : ""}
+         ${hide && variant === "dropdown" ? "hidden lg:block" : ""}
       `}
     >
       <Link
@@ -36,11 +36,9 @@ const NavItem = ({
         className={`group relative flex items-center gap-2 p-3 transition duration-300 uppercase text-sm md:text-md rounded-lg 
           ${
             variant === "dropdown"
-              ? "hover:bg-gray-200 hover:text-gray-900"
-              : ""
+              ? `${isPathName ? "bg-gray-200 text-gray-900" : "hover:bg-gray-200 hover:text-gray-900"}`
+              : `${isPathName ? "scale-105 font-bold" : ""}`
           }
-          ${isActive ? "scale-105 font-bold" : ""}
-          
         `}
       >
         {icon}
@@ -49,7 +47,7 @@ const NavItem = ({
         {variant === "header" && (
           <span
             className={`absolute left-2 bottom-0 w-0 h-[2px] bg-text transition-all duration-500 ease-in-out
-              ${isActive ? "w-full scale-105" : "w-0 group-hover:w-full"}
+              ${isPathName ? "w-full scale-105" : "w-0 group-hover:w-full"}
             `}
           />
         )}
