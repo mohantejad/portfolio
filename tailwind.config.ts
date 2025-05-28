@@ -17,6 +17,10 @@ export default {
         navbar: "#111827",
         hover: "#3ebed5",
       },
+      fontFamily: {
+        geist: ['Geist', 'sans-serif'],
+        geistMono: ['Geist Mono', 'monospace'],
+      },
     },
   },
   plugins: [

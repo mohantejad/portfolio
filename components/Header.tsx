@@ -46,7 +46,7 @@ const Header = () => {
     variant: 'header' | 'dropdown',
     isDropdown = false
   ) =>
-    items.map((item, idx) => {
+    items.map((item) => {
 
       if (!isDropdown && 'changable' in item) {
         const visibilityClass = item.changable ? 'lg:flex' : 'md:flex';
