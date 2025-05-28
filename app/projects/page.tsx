@@ -1,14 +1,10 @@
-import ProjectsComponent from '@/components/ProjectsComponent'
-import { getProjectsData } from '@/sanity/sanity-utils'
-import { ProjectType } from '@/types'
-import React from 'react'
-
+import ProjectsComponent from '@/components/ProjectsComponent';
+import { getProjectsData } from '@/sanity/sanity-utils';
+import { ProjectType } from '@/types';
 
 const Projects = async () => {
-    const projectData: ProjectType[] = await getProjectsData()
-  return (
-    <ProjectsComponent projectData={projectData} />
-  )
-}
+  const projectData: ProjectType[] = await getProjectsData();
+  return <ProjectsComponent projectData={projectData} />;
+};
 
-export default Projects
+export default Projects;

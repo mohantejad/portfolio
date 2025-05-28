@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType } from 'sanity';
 
 const experienceScema = defineType({
     name: 'experience',
@@ -6,42 +6,42 @@ const experienceScema = defineType({
     type: 'document',
     fields: [
           defineField({
-            name: "title",
-            title: "Job Title",
-            type: "string",
+            name: 'title',
+            title: 'Job Title',
+            type: 'string',
           }),
           defineField({
-            name: "company",
-            title: "Company / Organization",
-            type: "string",
+            name: 'company',
+            title: 'Company / Organization',
+            type: 'string',
           }),
           defineField({
-            name: "fromDate",
-            title: "From Date",
-            type: "date",
+            name: 'fromDate',
+            title: 'From Date',
+            type: 'date',
           }),
           defineField({
-            name: "toDate",
-            title: "To Date",
-            type: "date",
+            name: 'toDate',
+            title: 'To Date',
+            type: 'date',
           }),
           defineField({
-            name: "description",
-            title: "Description",
-            type: "array",
-            of: [{ type: "string" }],
+            name: 'description',
+            title: 'Description',
+            type: 'array',
+            of: [{ type: 'string' }],
           }),
           defineField({
-            name: "image",
-            title: "Experience Image",
-            type: "image",
+            name: 'image',
+            title: 'Experience Image',
+            type: 'image',
             options: { hotspot: true },
           }),
           defineField({
-            name: "skillsUsed",
-            title: "Skills Used",
-            type: "array",
-            of: [{ type: "reference", to: [{ type: "skill" }] }], // Many-to-Many Relationship with Skills
+            name: 'skillsUsed',
+            title: 'Skills Used',
+            type: 'array',
+            of: [{ type: 'reference', to: [{ type: 'skill' }] }], // Many-to-Many Relationship with Skills
           }),
     ]
 })

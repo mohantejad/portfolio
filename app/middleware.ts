@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
-    const token = req.cookies.get('auth-token'); // Example check
+    const token = req.cookies.get('auth-token');
     if (!token) {
         return NextResponse.redirect(new URL('/login', req.url));
     }
@@ -10,5 +10,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: '/admin/:path*', // Protect all /admin routes
+    matcher: '/admin/:path*', 
 };

@@ -15,6 +15,7 @@ const Skill = ({ icon, name, percentage, onClick }: Props) => {
       transition={{ duration: 0.8 }}
       className='group relative flex cursor-pointer'
       onClick={onClick}
+      title={name}
     >
       <motion.img
         initial={{ opacity: 0 }}
@@ -22,7 +23,7 @@ const Skill = ({ icon, name, percentage, onClick }: Props) => {
         whileInView={{ opacity: 1, x: 0 }}
         src={icon}
         alt={name}
-        className='rounded-full border border-primary object-cover w-16 h-16 filter group-hover:grayscale transition-all ease-in-out shadow-lg hover:shadow-primary/50 duration-300 group-hover:scale-110'
+        className='rounded-full border border-primary object-fit w-16 h-16 md:w-20 md:h-20 filter group-hover:grayscale transition-all ease-in-out shadow-lg hover:shadow-primary/50 duration-300 group-hover:scale-110 bg-white'
         whileHover={{ scale: 1.1 }}
       />
       <div className='absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-16 h-16 z-0 rounded-full'>

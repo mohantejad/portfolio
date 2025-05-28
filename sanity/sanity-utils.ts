@@ -76,6 +76,7 @@ export async function getSkillsData(): Promise<SkillType[]> {
 export async function getExperiencData(): Promise<ExperienceType[]> {
   return client.fetch(
     groq`*[_type == 'experience']{
+      title,
       company,
       role,
       fromDate,
