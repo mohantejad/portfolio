@@ -8,15 +8,18 @@ const About = async () => {
   const projectData: ProjectType[] = await getProjectsData();
 
   return (
-    <AboutComponent
-      aboutData={aboutData}
-      projects={projectData.map(({ name, icon, liveDemo, slug }) => ({
-        name,
-        icon,
-        liveDemo,
-        slug,
-      }))}
-    />
+    <div className='mt-4'>
+      <AboutComponent
+        aboutData={aboutData}
+        projects={projectData.map(({ name, icon, liveDemo, slug }) => ({
+          name,
+          icon,
+          liveDemo,
+          slug,
+        }))}
+      />
+    </div>
+
   );
 };
 

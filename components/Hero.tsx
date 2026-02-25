@@ -18,102 +18,92 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
   );
 
   return (
-    <div className='flex flex-col items-center'>
-      <div className='flex items-center justify-evenly text-text w-screen mt-8 px-6 md:px-0'>
+    <section className='relative w-full pt-28 md:pt-36 pb-16 px-6 md:px-10'>
+      <div className='mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center'>
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
+          initial={{ x: -60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className='text-left max-w-lg'
+          transition={{ duration: 0.9 }}
+          className='space-y-6'
         >
-          <p className='text-text text-lg font-bold uppercase tracking-widest'>
+          <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/70 bg-panel/40 text-xs uppercase tracking-[0.3em] text-primary'>
             {heroData.title}
-          </p>
+          </span>
 
-          <h1 className='hidden md:block text-3xl md:text-5xl font-bold leading-tight md:min-h-[100px] my-2'>
-            <TypeAnimation
-              sequence={animatedTexts}
-              wrapper='span'
-              speed={10}
-              repeat={Infinity}
-              className='text-primary'
-            />
-          </h1>
+          <div className='min-h-[5.65rem] md:min-h-[6.5rem] lg:min-h-[8rem]'>
+            <h1 className='font-display text-4xl md:text-5xl lg:text-6xl leading-tight text-text'>
+              <TypeAnimation
+                sequence={animatedTexts}
+                wrapper='span'
+                speed={12}
+                repeat={Infinity}
+                className='text-primary'
+              />
+            </h1>
+          </div>
 
-          <p className='mt-4 md:mt-0text-gray-300 text-lg text-justify'>
+          <p className='text-lg md:text-xl text-muted leading-relaxed max-w-2xl'>
             {heroData.description}
           </p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
-            className='flex items-center gap-6 my-6'
-          >
+          <div className='flex flex-wrap items-center gap-4'>
             <a
               href={heroData.resume}
               target='_blank'
-              className='p-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-black transition duration-300 ease-in-out uppercase tracking-wide'
+              className='px-6 py-3 rounded-full bg-primary text-ink font-semibold uppercase tracking-wide shadow-glow hover:bg-primaryStrong transition'
             >
               Download CV
             </a>
+            <Link
+              href='#contact'
+              className='px-6 py-3 rounded-full border border-border/80 text-text hover:text-primary hover:border-primary transition uppercase tracking-wide'
+            >
+              Let&apos;s Talk
+            </Link>
             <div className='flex gap-3 text-2xl text-primary'>
               {heroData.socials.map((item, index) => (
                 <Link
                   key={index}
                   href={item.url}
-                  className='relative group hover:scale-104 hover:opacity-90'
+                  className='group hover:scale-105 transition'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
                   <Image
                     src={item.icon}
                     alt={item.platform}
-                    width={32}
-                    height={32}
-                    className='icon w-6 h-6'
+                    width={24}
+                    height={24}
+                    className='icon w-5 h-5 opacity-80 group-hover:opacity-100'
                   />
-                  <span className='absolute left-0 bottom-0 top-8 w-0 h-[2px] bg-primary transition-all duration-500 ease-in-out group-hover:w-full' />
                 </Link>
               ))}
             </div>
-          </motion.div>
+          </div>
         </motion.div>
 
         <motion.div
-          initial={{ x: 100, opacity: 0 }}
+          initial={{ x: 60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className='hidden md:block relative w-36 h-36 lg:w-80 lg:h-80'
+          transition={{ duration: 0.9 }}
+          className='relative flex items-center justify-center'
         >
-          <div className='absolute inset-0 rounded-full lg:rounded-lg border-4 border-primary animate-spin-slow'></div>
-          <Image
-            src='/myphoto.jpeg'
-            alt='Profile Image'
-            width={350}
-            height={350}
-            className='rounded-full lg:rounded-lg border-4 border-[#0f0f0f]'
-          />
+          <div className='absolute -inset-6 rounded-full bg-primary/10 blur-3xl' />
+          <div className='relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-3xl border border-border/70 bg-panel/50 backdrop-blur-xl shadow-card flex items-center justify-center'>
+            <Image
+              src='/myphoto.jpeg'
+              alt='Profile Image'
+              width={320}
+              height={320}
+              className='rounded-2xl border border-border/60'
+            />
+          </div>
+          <div className='absolute -bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full bg-panel/70 border border-border/70 text-sm text-muted shadow-card'>
+            AI + Full‑Stack • Product‑Driven Engineering
+          </div>
         </motion.div>
       </div>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className='text-[16px] text-xl md:text-2xl font-medium whitespace-nowrap mt-4 md:mt-8'
-      >
-        <span className='text-text hidden md:inline'>
-          If there is job opening with requirement of my skillset?{' '}
-        </span>
-        <Link
-          href='#contact'
-          className='relative group font-bold uppercase text-primary border-b-2 border-primary transition-all duration-300 hover:text-hover hover:border-hover'
-        >
-          {" "}Hire Me!
-          <span className='absolute left-0 bottom-0 top-6 w-0 h-[2px] bg-hover transition-all duration-500 ease-in-out group-hover:w-full' />
-        </Link>
-      </motion.p>
-    </div>
+    </section>
   );
 };
 

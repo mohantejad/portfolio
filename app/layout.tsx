@@ -2,7 +2,23 @@ import type { Metadata } from 'next';
 import './globals.css';
 import LayoutWrapper from '@/components/utils/LayoutWrapper';
 import { Toaster } from 'react-hot-toast';
+import { Manrope, Space_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+});
+
+const geistMono = localFont({
+  src: '../public/fonts/GeistFam/Geist_Mono/static/GeistMono-Regular.ttf',
+  variable: '--font-geist-mono',
+});
 
 export const metadata: Metadata = {
   title: 'Mohanteja | Portfolio',
@@ -15,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`font-geist text-text antialiased`}
+        className={`${manrope.variable} ${spaceGrotesk.variable} ${geistMono.variable} font-sans text-text antialiased bg-ink`}
       >
         <LayoutWrapper>
           <Toaster position='top-right' />

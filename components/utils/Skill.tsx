@@ -23,10 +23,10 @@ const Skill = ({ icon, name, percentage, onClick }: Props) => {
         whileInView={{ opacity: 1, x: 0 }}
         src={icon}
         alt={name}
-        className='rounded-full border border-primary object-fit w-16 h-16 md:w-20 md:h-20 filter group-hover:grayscale transition-all ease-in-out shadow-lg hover:shadow-primary/50 duration-300 group-hover:scale-110 bg-white'
+        className='rounded-full border border-border/70 object-fit w-16 h-16 md:w-20 md:h-20 filter group-hover:grayscale transition-all ease-in-out shadow-card hover:shadow-glow duration-300 group-hover:scale-110 bg-white ring-2 ring-transparent group-hover:ring-primary/40'
         whileHover={{ scale: 1.1 }}
       />
-      <div className='absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-16 h-16 z-0 rounded-full'>
+      <div className='absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-16 h-16 md:w-20 md:h-20 z-0 rounded-full'>
         <div className='flex items-center justify-center h-full'>
           <p className='text-md sm:text-xl font-bold text-black opacity-100'>
             {percentage}%

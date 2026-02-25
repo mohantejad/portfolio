@@ -17,19 +17,28 @@ const navItems = [
 
 const dropdownItems = [
   { href: '/contact', text: 'Contact', icon: <Mail size={20} />, delay: 0.3 },
-  {
-    href: '/Mohanteja_Resume.pdf',
-    text: 'Download Resume',
-    icon: <LetterText size={20} />,
-    delay: 0.3,
-    target: '_blank',
-  },
 ];
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [resumeUrl, setResumeUrl] = useState('/Mohanteja_Resume.pdf');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/hero')
+      .then((res) => res.json())
+      .then((data) => {
+        if (active && data?.resume) setResumeUrl(data.resume);
+      })
+      .catch(() => {
+        /* fallback stays */
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -100,14 +109,14 @@ const Header = () => {
       initial={{ transform: 'translateY(-50px)', opacity: 0 }}
       animate={{ transform: 'translateY(0px)', opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className='fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md py-8 px-12'
+      className='fixed top-0 left-0 right-0 z-50 bg-ink/60 backdrop-blur-lg border-b border-border/60 py-6 px-6 md:px-12'
     >
       <nav className='mx-auto flex justify-between items-center'>
         <motion.h1
           initial={{ x: -200, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className='text-primary text-lg font-bold tracking-wider uppercase'
+          className='text-primary text-lg font-bold tracking-widest uppercase font-display'
         >
           <Link href='/'>MOHANTEJA</Link>
         </motion.h1>
@@ -123,11 +132,11 @@ const Header = () => {
               aria-label='Toggle menu'
             >
               <Image
-                src='/myphoto.jpeg'
+                src='/profile_pic.jpeg'
                 alt='Profile'
                 width={40}
                 height={40}
-                className='rounded-full border border-gray-300'
+                className='rounded-full border border-border/70 shadow-glow'
               />
             </button>
 
@@ -138,12 +147,21 @@ const Header = () => {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -10, opacity: 0 }}
                   transition={{ duration: 0.3, ease: 'easeOut' }}
-                  className='absolute right-0 mt-3 w-60 lg:w-68 rounded-lg bg-navbar p-2 shadow-lg space-y-2 overflow-hidden'
+                  className='absolute right-0 mt-3 w-64 rounded-xl bg-panel/95 p-2 shadow-card space-y-2 overflow-hidden border border-border/80'
                 >
 
                   {renderNavItems(navItems, 'dropdown', true)}
 
                   {renderNavItems(dropdownItems, 'dropdown', true)}
+
+                  <NavItem
+                    href={resumeUrl}
+                    text='Download Resume'
+                    icon={<LetterText size={20} />}
+                    delay={0.3}
+                    variant='dropdown'
+                    target='_blank'
+                  />
                 </motion.div>
               )}
             </AnimatePresence>

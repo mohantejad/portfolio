@@ -17,7 +17,7 @@ const socials = [
   { href: 'https://www.linkedin.com/in/mohantejad/', icon: <FaLinkedin /> },
   { href: 'https://github.com/mohantejad', icon: <FaGithub /> },
   { href: 'https://www.instagram.com/mohantejad/', icon: <FaInstagram /> },
-  { href: 'https://www.youtube.com/@MohanTeja-fs1jm', icon: <FaYoutube /> },
+  { href: 'https://www.youtube.com/@fromideatoimplimentation', icon: <FaYoutube /> },
 ];
 
 interface FormData {
@@ -25,6 +25,7 @@ interface FormData {
   email: string;
   subject: string;
   message: string;
+  company?: string;
 }
 
 const Contact = () => {
@@ -56,15 +57,15 @@ const Contact = () => {
   };
 
   return (
-    <div className='relative h-screen flex flex-col items-center justify-center px-6 space-y-12'>
+    <section className='relative min-h-screen flex flex-col items-center justify-center px-6 space-y-12 pt-0 md:pt-4'>
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 1 }}
-        className='hidden md:block text-xl md:text-2xl uppercase font-bold text-primary text-center'
+        className='hidden md:block text-xl md:text-3xl uppercase font-bold text-primary text-center font-display tracking-[0.2em]'
       >
-        Contact me via my email or connect me through my socials
+        Contact Me Or Connect Socially
       </motion.h1>
 
       <div className='w-full max-w-4xl flex flex-col md:flex-row items-center justify-evenly gap-12 md:gap-0'>
@@ -72,14 +73,14 @@ const Contact = () => {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
-          className='w-full md:w-1/2 backdrop-blur-md p-8 rounded-xl border border-primary shadow-lg'
+          className='w-full md:w-1/2 backdrop-blur-md p-8 rounded-2xl border border-border/70 bg-panel/40 shadow-card'
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
             type='text'
             placeholder='Your Name'
             {...register('name', { required: 'Name is required' })}
-            className='w-full p-3 mb-4 bg-transparent border-b border-primary outline-none text-white'
+            className='w-full p-3 mb-4 bg-transparent border-b border-border/70 outline-none text-text focus:border-primary'
           />
           {errors.name?.message && (
             <p className='text-red-500'>{String(errors.name.message)}</p>
@@ -95,7 +96,7 @@ const Contact = () => {
                 message: 'Invalid email format',
               },
             })}
-            className='w-full p-3 mb-4 bg-transparent border-b border-primary outline-none text-white'
+            className='w-full p-3 mb-4 bg-transparent border-b border-border/70 outline-none text-text focus:border-primary'
           />
           {errors.email?.message && (
             <p className='text-red-500'>{String(errors.email.message)}</p>
@@ -105,7 +106,7 @@ const Contact = () => {
             type='text'
             placeholder='Subject'
             {...register('subject', { required: 'Subject is required' })}
-            className='w-full p-3 mb-4 bg-transparent border-b border-primary outline-none text-white'
+            className='w-full p-3 mb-4 bg-transparent border-b border-border/70 outline-none text-text focus:border-primary'
           />
           {errors.subject?.message && (
             <p className='text-red-500'>{String(errors.subject.message)}</p>
@@ -115,7 +116,16 @@ const Contact = () => {
             placeholder='Your Message'
             rows={4}
             {...register('message', { required: 'Message is required' })}
-            className='w-full p-3 mb-4 bg-transparent border-b border-primary outline-none text-white'
+            className='w-full p-3 mb-4 bg-transparent border-b border-border/70 outline-none text-text focus:border-primary'
+          />
+
+          <input
+            type='text'
+            tabIndex={-1}
+            autoComplete='off'
+            className='hidden'
+            aria-hidden='true'
+            {...register('company')}
           />
           {errors.message?.message && (
             <p className='text-red-500'>{String(errors.message.message)}</p>
@@ -123,7 +133,7 @@ const Contact = () => {
 
           <button
             type='submit'
-            className='w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-black rounded-lg hover:bg-hover transition duration-300 disabled:opacity-50'
+            className='w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-ink rounded-full hover:bg-primaryStrong transition duration-300 disabled:opacity-50'
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Sending...' : 'Send Email'} <FaPaperPlane />
@@ -136,7 +146,7 @@ const Contact = () => {
           transition={{ duration: 1 }}
           className='w-full md:w-1/2 flex flex-col items-center gap-4 text-center'
         >
-          <p className='text-lg text-text'>Or reach me on:</p>
+          <p className='text-lg text-muted'>Or reach me on:</p>
 
           <div className='flex gap-4 text-3xl text-primary'>
             {socials.map((item, index) => (
@@ -152,7 +162,7 @@ const Contact = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

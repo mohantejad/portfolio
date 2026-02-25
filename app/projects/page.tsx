@@ -4,7 +4,11 @@ import { ProjectType } from '@/types';
 
 const Projects = async () => {
   const projectData: ProjectType[] = await getProjectsData();
-  return <ProjectsComponent projectData={projectData} />;
+  return (
+    <div className='mt-4'>
+      <ProjectsComponent projectData={projectData} />;
+    </div>
+  )
 };
 
 export default Projects;

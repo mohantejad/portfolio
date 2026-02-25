@@ -43,23 +43,23 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
 
 
   return (
-    <div className='flex flex-col items-center justify-center space-y-10 md:space-y-12 mt-12 md:mt-8'>
+    <section className='flex flex-col items-center justify-center space-y-10 md:space-y-12 mt-12 md:mt-8 px-6 pb-20'>
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 1 }}
-        className='text-xl md:text-2xl uppercase font-bold text-primary text-center'
+        className='text-xl md:text-3xl uppercase font-bold text-primary text-center font-display tracking-[0.2em]'
       >
-        Projects that helped me to learn in demanding skills
+        Projects That Ship Real Outcomes
       </motion.h1>
 
-      <div className='relative flex items-center w-full max-w-5xl justify-center px-4 md:px-0'>
+      <div className='relative flex items-center w-full max-w-6xl justify-center px-4 md:px-0'>
         <button
           onClick={prevProject}
           disabled={currentIndex === 0}
           title='Previous Project'
-          className={`absolute left-4 md:left-0 p-2 backdrop-blur-md rounded-full hover:bg-primary z-10 text-white hover:text-black transform -translate-x-1/2 text-xl cursor-pointer hover:border hover:border-primary bg-opacity-0 transition-border duration-300 ${
+          className={`absolute left-4 md:left-0 p-2 backdrop-blur-md rounded-full hover:bg-primary z-10 text-text hover:text-ink transform -translate-x-1/2 text-xl cursor-pointer hover:border hover:border-primary bg-opacity-0 transition-border duration-300 ${
             currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
@@ -71,14 +71,14 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
             initial='enter'
             animate='center'
             exit='exit'
-            className='w-[80vw] flex justify-center h-[40vh]'
+            className='w-[90vw] flex justify-center h-[42vh]'
           >
             <ParallaxTilt
               tiltMaxAngleX={5}
               tiltMaxAngleY={5}
               scale={1.03}
               transitionSpeed={200}
-              className='w-[90%] sm:w-3/4 md:w-2/3 lg:w-1/2 backdrop-blur-sm rounded-3xl p-8 border border-primary shadow-lg hover:shadow-primary/50 transition-shadow duration-300 flex flex-col items-center justify-between'
+              className='w-[92%] sm:w-4/5 md:w-3/4 lg:w-2/3 backdrop-blur-sm rounded-3xl p-8 border border-border/70 bg-panel/50 shadow-card hover:shadow-glow transition-shadow duration-300 flex flex-col items-center justify-between'
             >
               <Link
                 href={`${projectData[currentIndex]?.liveDemo || '#'}`}
@@ -91,7 +91,7 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
                   </span>
                 </h2>
               </Link>
-              <div className='flex items-center justify-center text-center'>
+              <div className='flex items-center justify-center text-center text-muted'>
                 <PortableText value={projectData[currentIndex]?.description} />
               </div>
               <div className='flex flex-wrap justify-center gap-2 mt-4'>
@@ -101,7 +101,7 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
                     href={`${tech?.link || '#'}`}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='px-3 py-1 text-sm bg-primary text-navbar rounded-full hover:underline'
+                    className='px-3 py-1 text-xs bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition'
                   >
                     {tech.name}
                   </Link>
@@ -110,13 +110,13 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
               <div className='flex justify-center gap-6 mt-6'>
                 <Link
                   href={`${projectData[currentIndex]?.liveDemo || '#'}`}
-                  className='inline-block px-4 py-2 bg-green-600 text-primary rounded-full hover:bg-green-700 transition uppercase'
+                  className='inline-block px-4 py-2 bg-primary text-ink rounded-full hover:bg-primaryStrong transition uppercase'
                 >
                   Live Demo
                 </Link>
                 <Link
                   href={`${projectData[currentIndex]?.viewCode || '#'}`}
-                  className='inline-block px-4 py-2  text-primary rounded-full hover:bg-primary hover:text-black border border-primary transition uppercase'
+                  className='inline-block px-4 py-2  text-primary rounded-full hover:bg-primary/10 border border-border/80 transition uppercase'
                 >
                   View Code
                 </Link>
@@ -129,7 +129,7 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
           onClick={nextProject}
           disabled={currentIndex === projectData.length - 1}
           title='Next Project'
-          className={`absolute -right-6 md:-right-10 p-2 backdrop-blur-md rounded-full hover:bg-primary z-10 text-white hover:text-black transform -translate-x-1/2 text-xl cursor-pointer hover:border hover:border-primary bg-opacity-0 transition-border duration-300 ${
+          className={`absolute -right-6 md:-right-10 p-2 backdrop-blur-md rounded-full hover:bg-primary z-10 text-text hover:text-ink transform -translate-x-1/2 text-xl cursor-pointer hover:border hover:border-primary bg-opacity-0 transition-border duration-300 ${
             currentIndex === projectData.length - 1
               ? 'opacity-50 cursor-not-allowed'
               : ''
@@ -147,7 +147,7 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
         className='mt-20 md:mt-28 lg:mt-28 pt-6 md:pt-10 text-center flex flex-wrap items-center justify-center gap-4'
       >
         <h2 className='text-xl md:text-2xl font-bold text-text whitespace-nowrap'>
-          Let&apos;s make your Dream to Reality together
+          Ready to build something meaningful?
         </h2>
 
         <a
@@ -159,7 +159,7 @@ const ProjectsComponent: React.FC<ProjectProps> = ({ projectData }) => {
           <span className='absolute top-6 left-0 bottom-0 w-0 h-[2px] bg-hover transition-all duration-500 ease-in-out group-hover:w-full' />
         </a>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

@@ -9,7 +9,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   const isAdminPage = pathname.startsWith('/admin') || pathname.startsWith('/structure');
 
   return (
-    <div className='stars-container flex items-center justify-center min-h-screen'>
+    <div className='page-shell flex items-center justify-center min-h-screen'>
       <NProgressProvider />
       {!isAdminPage && <Header />}
       {children}

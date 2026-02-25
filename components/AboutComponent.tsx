@@ -37,31 +37,37 @@ const iconMap: Record<string, ReactElement> = {
 
 const AboutComponent: React.FC<AboutProps> = ({ aboutData, projects }) => {
   return (
-    <div className="text-text flex flex-col items-center justify-center px-6">
+    <section className="text-text flex flex-col items-center justify-center px-6 pb-20">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 1 }}
-        className="text-xl md:text-2xl uppercase font-bold text-primary text-center mt-8"
+        className="text-xl md:text-3xl uppercase font-bold text-primary text-center mt-28 md:mt-28 lg:mt-16 font-display tracking-[0.25em]"
       >
-        My Journey Towards Building Intellectual Solutions
+        Building Intelligent, Human‑Centered Products
       </motion.h1>
 
-      <div className="mt-8 md:mt-10 grid gap-10 md:grid-cols-3">
+      <div className="mt-10 grid gap-6 md:grid-cols-3 max-w-6xl w-full">
         <InfoCard
           icon={<FaGraduationCap className="text-2xl text-primary" />}
           title="Education"
         >
-          {aboutData.education.map((edu) => (
-            <div key={edu.degree} className="mb-2">
+          {aboutData.education.map((edu, index) => (
+            <div key={`${edu.degree}-${edu.college}-${index}`} className="mb-2">
               <h4 className="text-md font-semibold text-primary">
                 {edu.degree}
               </h4>
-              <p className="text-sm text-text">
-                <Link href={`${edu.collegeLink}`} className="hover:underline">
-                  {edu.major} - {edu.college} ({edu.year})
-                </Link>
+              <p className="text-sm text-muted">
+                {edu.collegeLink ? (
+                  <Link href={`${edu.collegeLink}`} className="hover:underline">
+                    {edu.major} - {edu.college} ({edu.year})
+                  </Link>
+                ) : (
+                  <span>
+                    {edu.major} - {edu.college} ({edu.year})
+                  </span>
+                )}
               </p>
             </div>
           ))}
@@ -73,15 +79,24 @@ const AboutComponent: React.FC<AboutProps> = ({ aboutData, projects }) => {
           delay={0.3}
         >
           <div className="flex flex-col space-y-2">
-            {projects.map((proj) => (
-              <Link
-                href={`${proj.liveDemo}`}
-                key={proj.name}
-                className="flex items-center gap-3 text-sm font-semibold hover:underline"
-              >
-                {iconMap[proj.icon] || <FaProjectDiagram />} {proj.name}
-              </Link>
-            ))}
+            {projects.map((proj, index) =>
+              proj.liveDemo ? (
+                <Link
+                  href={`${proj.liveDemo}`}
+                  key={`${proj.name}-${index}`}
+                  className="flex items-center gap-3 text-sm font-semibold hover:text-primary transition"
+                >
+                  {iconMap[proj.icon] || <FaProjectDiagram />} {proj.name}
+                </Link>
+              ) : (
+                <div
+                  key={`${proj.name}-${index}`}
+                  className="flex items-center gap-3 text-sm font-semibold text-muted"
+                >
+                  {iconMap[proj.icon] || <FaProjectDiagram />} {proj.name}
+                </div>
+              )
+            )}
           </div>
         </InfoCard>
 
@@ -91,13 +106,19 @@ const AboutComponent: React.FC<AboutProps> = ({ aboutData, projects }) => {
           delay={0.6}
           hiddenOnMobile
         >
-          {aboutData.experience.map((exp) => (
-            <div key={exp.role} className="mb-2">
+          {aboutData.experience.map((exp, index) => (
+            <div key={`${exp.role}-${exp.company}-${index}`} className="mb-2">
               <h4 className="text-md font-semibold text-primary">{exp.role}</h4>
-              <p className="text-sm text-text">
-                <Link href={`${exp.companyLink}`} className="hover:underline">
-                  {exp.company} ({exp.duration})
-                </Link>
+              <p className="text-sm text-muted">
+                {exp.companyLink ? (
+                  <Link href={`${exp.companyLink}`} className="hover:underline">
+                    {exp.company} ({exp.duration})
+                  </Link>
+                ) : (
+                  <span>
+                    {exp.company} ({exp.duration})
+                  </span>
+                )}
               </p>
             </div>
           ))}
@@ -114,13 +135,22 @@ const AboutComponent: React.FC<AboutProps> = ({ aboutData, projects }) => {
           {aboutData.skills
             .filter((skill) => skill.top)
             .map((skill, index) => (
-              <Link
-                key={index}
-                href={skill.link}
-                className="px-4 py-2 text-sm font-semibold border-2 rounded-full transition-all duration-300 border-text text-primary hover:bg-primary hover:text-black hover:shadow-lg hover:underline"
-              >
-                {skill.name}
-              </Link>
+              skill.link ? (
+                <Link
+                  key={index}
+                  href={skill.link}
+                  className="px-4 py-2 text-sm font-semibold border rounded-full transition-all duration-300 border-border text-text hover:bg-primary/10 hover:text-primary hover:border-primary"
+                >
+                  {skill.name}
+                </Link>
+              ) : (
+                <span
+                  key={index}
+                  className="px-4 py-2 text-sm font-semibold border rounded-full border-border text-muted"
+                >
+                  {skill.name}
+                </span>
+              )
             ))}
         </motion.div>
       </LazyMotion>
@@ -134,7 +164,7 @@ const AboutComponent: React.FC<AboutProps> = ({ aboutData, projects }) => {
           className="mt-12 md:mt-16 lg-mt-20 text-center flex flex-wrap items-center justify-center gap-4"
         >
           <h2 className="text-xl md:text-2xl font-bold text-text whitespace-nowrap">
-            Want to collaborate or discuss an AI idea?
+            Want to collaborate on an AI product?
           </h2>
 
           <Link
@@ -146,7 +176,7 @@ const AboutComponent: React.FC<AboutProps> = ({ aboutData, projects }) => {
           </Link>
         </motion.div>
       </LazyMotion>
-    </div>
+    </section>
   );
 };
 

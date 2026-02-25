@@ -31,27 +31,27 @@ const Experience: React.FC<ExperinceProps> = ({ experienceData }) => {
   );
 
   return (
-    <div className='flex flex-col mt-12 items-center justify-evenly px-2'>
+    <section className='flex flex-col mt-24 lg:mt-20 items-center justify-evenly px-6 pb-16'>
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 1 }}
-        className='text-xl md:text-2xl uppercase font-bold text-primary text-center'
+        className='text-xl md:text-3xl uppercase font-bold text-primary text-center font-display tracking-[0.2em]'
       >
-        Industry Standard Experience with Amazing and Extrordinary Organizations
+        Experience Building Production Systems
       </motion.h1>
 
-      <TabGroup className='mt-6'>
+      <TabGroup className='w-full max-w-4xl'>
         <TabList className='flex w-full space-x-4 items-center justify-center'>
           {Object.keys(groupedExperiences).map((period) => (
             <Tab
               key={period}
               className={({ selected }) =>
-                `px-4 py-2 text-md font-bold rounded-lg focus:outline-none transition-all border border-primary ${
+                `px-4 py-2 text-sm font-bold rounded-full focus:outline-none transition-all border border-border/70 ${
                   selected
-                    ? 'bg-primary text-navbar'
-                    : 'text-primary hover:scale-105 hover:opacity-9 hover:bg-primary/80 hover:text-navbar'
+                    ? 'bg-primary text-ink'
+                    : 'text-primary hover:scale-105 hover:bg-primary/10'
                 }`
               }
             >
@@ -73,26 +73,28 @@ const Experience: React.FC<ExperinceProps> = ({ experienceData }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   whileHover={{ scale: 1.05 }}
-                  className='p-8 shadow-lg rounded-lg border border-primary hover:shadow-xl transition-shadow backdrop-blur-sm'
+                  className='p-8 shadow-card rounded-2xl border border-border/70 hover:shadow-glow transition-shadow backdrop-blur-sm bg-panel/40'
                 >
-                  <motion.img
-                    src={exp.image}
-                    alt={exp.title}
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={{ y: [0, -20, 0], opacity: 1 }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className='hidden sm:block w-32 h-32 object-contain mx-auto mb-2'
-                  />
+                  <div className='hidden sm:flex items-center justify-center w-32 h-28 mx-auto mb-2 rounded-2xl bg-white/90 border border-border/60'>
+                    <motion.img
+                      src={exp.image}
+                      alt={exp.title}
+                      initial={{ y: -100, opacity: 0 }}
+                      animate={{ y: [0, -20, 0], opacity: 1 }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      className='w-24 h-24 object-contain'
+                    />
+                  </div>
                   <h2 className='text-lg font-semibold text-primary'>
                     {exp.title}
                   </h2>
                   <p className='text-sm font-medium text-text italic'>
                     {exp.company}
                   </p>
-                  <p className='text-xs text-text mb-2'>
+                  <p className='text-xs text-muted mb-2'>
                     {exp.fromDate} - {exp.toDate}
                   </p>
-                  <ul className='list-disc list-inside text-sm text-primary'>
+                  <ul className='list-disc list-inside text-sm text-text'>
                     {exp.description.map((point, i) => (
                       <li key={i}>{point}</li>
                     ))}
@@ -102,7 +104,7 @@ const Experience: React.FC<ExperinceProps> = ({ experienceData }) => {
                       {exp.skillsUsed.map((skill, i) => (
                         <span
                           key={i}
-                          className='px-2 py-1 text-xs font-medium text-navbar bg-primary rounded-lg'
+                          className='px-2 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full'
                         >
                           {skill.name}
                         </span>
@@ -136,7 +138,7 @@ const Experience: React.FC<ExperinceProps> = ({ experienceData }) => {
           <span className='absolute top-6 left-0 bottom-0 w-0 h-[2px] bg-hover transition-all duration-500 ease-in-out group-hover:w-full' />
         </a>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

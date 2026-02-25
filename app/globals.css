@@ -6,21 +6,28 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: #0b0f1a;
+  color: #e6edf7;
+}
+
 section {
   min-height: 100vh;
 }
 
-.stars-container {
+.page-shell {
   background:
-    radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%),
-    radial-gradient(
-      ellipse at top,
-      #1b2735 0%,
-      rgba(9, 10, 15, 0.8) 50%,
-      #090a0f 100%
+    radial-gradient(1200px 600px at 10% -10%, rgba(34, 211, 238, 0.25), transparent 60%),
+    radial-gradient(800px 400px at 90% 10%, rgba(52, 211, 153, 0.18), transparent 60%),
+    linear-gradient(180deg, rgba(11, 15, 26, 0.98) 0%, rgba(11, 15, 26, 0.88) 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 80px
     );
 }
-
 
 .icon {
   filter: invert(86%) sepia(21%) saturate(327%) hue-rotate(160deg)
@@ -46,35 +53,6 @@ section {
   display: none;
 }
 
-
-@font-face {
-  font-family: 'Geist Mono';
-  src: url('/fonts/GeistFam/Geist/static/Geist-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Mono';
-  src: url('/fonts/GeistFam/Geist/static/Geist-Regular.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Mono';
-  src: url('/fonts/GeistFam/Geist_Mono/static/Geist-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Mono';
-  src: url('/fonts/GeistFam/Geist_Mono/static/Geist-Regular.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+::selection {
+  background: rgba(34, 211, 238, 0.25);
 }

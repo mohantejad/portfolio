@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6ee7f8" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#34d399" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="108" height="108" rx="28" fill="#0f172a" stroke="url(#g)" stroke-width="2" />
+  <text x="60" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" letter-spacing="2" fill="#e6edf7">NP</text>
+</svg>

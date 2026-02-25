@@ -36,11 +36,11 @@ const NavItem = ({
       <Link
         href={href}
         target={target}
-        className={`group relative flex items-center gap-2 p-3 transition duration-300 uppercase text-sm md:text-md rounded-lg 
+        className={`group relative flex items-center gap-2 px-4 py-2 transition duration-300 uppercase text-xs md:text-sm rounded-full 
           ${
             variant === 'dropdown'
-              ? `${isPathName ? 'bg-gray-200 text-gray-900' : 'hover:bg-gray-200 hover:text-gray-900'}`
-              : `${isPathName ? 'scale-105 font-bold' : ''}`
+              ? `${isPathName ? 'bg-primary text-ink' : 'hover:bg-primary/20 hover:text-primary'}`
+              : `${isPathName ? 'text-primary bg-primary/10 shadow-glow' : 'text-text hover:text-primary'}`
           }
         `}
       >
@@ -49,8 +49,8 @@ const NavItem = ({
 
         {variant === 'header' && (
           <span
-            className={`absolute left-2 bottom-0 w-0 h-[2px] bg-text transition-all duration-500 ease-in-out
-              ${isPathName ? 'w-full scale-105' : 'w-0 group-hover:w-full'}
+            className={`absolute left-4 bottom-0 w-0 h-[2px] bg-primary transition-all duration-500 ease-in-out
+              ${isPathName ? 'w-[calc(100%-2rem)] scale-105' : 'w-0 group-hover:w-[calc(100%-2rem)]'}
             `}
           />
         )}
