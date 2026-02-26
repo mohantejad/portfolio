@@ -55,7 +55,7 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
               Download CV
             </a>
             <Link
-              href='#contact'
+              href='/contact'
               className='px-6 py-3 rounded-full border border-border/80 text-text hover:text-primary hover:border-primary transition uppercase tracking-wide'
             >
               Let&apos;s Talk

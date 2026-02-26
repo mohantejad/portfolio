@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import NProgressProvider from './NProgressProvider';
+import ChatWidget from '@/components/ChatWidget';
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -13,6 +14,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       <NProgressProvider />
       {!isAdminPage && <Header />}
       {children}
+      {!isAdminPage && <ChatWidget />}
     </div>
   );
 }
